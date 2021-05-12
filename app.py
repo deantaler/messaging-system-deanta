@@ -20,7 +20,7 @@ db = SQLAlchemy(app)
 
 class Users(db.Model):
     user_id = db.Column(db.Integer, primary_key=True)
-    public_user_id = db.Column(db.String(50), unique=True)
+#   public_user_id = db.Column(db.String(50), unique=True)
     name = db.Column(db.String(20))
     password = db.Column(db.String(8))
 
