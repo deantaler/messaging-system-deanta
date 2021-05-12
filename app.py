@@ -13,12 +13,12 @@ app = Flask(__name__)
 
 pymysql.install_as_MySQLdb()
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://bfe492d145dddb:9cc666f7@us-cdbr-east-03.cleardb.com/heroku_075cd3d1f9bda9e?reconnect=true'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://bfe492d145dddb:9cc666f7@us-cdbr-east-03.cleardb.com/heroku_075cd3d1f9bda9e?'
 
 db = SQLAlchemy(app)
 
 
-class User(db.Model):
+class Users(db.Model):
     user_id = db.Column(db.Integer, primary_key=True)
     public_user_id = db.Column(db.String(50), unique=True)
     name = db.Column(db.String(20))
@@ -45,10 +45,11 @@ class User(db.Model):
 @app.route('/user', methods=['POST'])
 def create_user():
     data = request.get_json()
-    public_user_id = str(uuid.uuid4())
+    # public_user_id = str(uuid.uuid4())
     name = data['name']
     password = generate_password_hash(data['password'], method='sha256')
-    user = User(public_user_id=public_user_id, name=name, password=password)
+    # user = User(public_user_id=public_user_id, name=name, password=password)
+    user = Users(name=name, password=password)
     db.session.add(user)
     db.session.commit()
     return jsonify({'message': 'Welcome {}'.format(name)})
