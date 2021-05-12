@@ -1,2 +1,4 @@
+sqlalchemy
 flask
 flask-sqlalchemy
+MySQLdb: 1.2.5
