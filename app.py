@@ -47,7 +47,8 @@ def create_user():
     data = request.get_json()
     # public_user_id = str(uuid.uuid4())
     name = data['name']
-    password = generate_password_hash(data['password'], method='sha256')
+    password = data['password']
+    # generate_password_hash(data['password'], method='sha256')
     # user = User(public_user_id=public_user_id, name=name, password=password)
     user = Users(name=name, password=password)
     db.session.add(user)
