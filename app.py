@@ -57,6 +57,10 @@ def create_user():
 # @app.route('/user/<user_id>', method=['DELETE'])
 # def delete_user():
 #     return ''
+@app.route('/')
+def hello():
+    return 'Hello World!'
+
 
 
 if __name__ == '__main__':
