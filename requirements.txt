@@ -1,6 +1,9 @@
+boto
+PyJWT
 werkzeug
 pymysql
 sqlalchemy
 flask
 flask-sqlalchemy
 gunicorn
+
