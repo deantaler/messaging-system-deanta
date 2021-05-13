@@ -10,7 +10,7 @@ from functools import wraps
 
 app = Flask(__name__)
 
-s3 = S3Connection(os.environ.get('S3_KEY'), os.environ.get('S3_SECRET'))
+# s3 = S3Connection(os.environ.get('S3_KEY'), os.environ.get('S3_SECRET'))
 # SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://' + os.environ.get('DB_USER') + ':' + os.environ.get('DB_PASS') + '@' + \
 #                           os.environ.get('DB_HOST') + '/' + os.environ.get('DB_SCHEME')
 
