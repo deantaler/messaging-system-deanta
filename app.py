@@ -1,4 +1,6 @@
 import os
+
+from boto.s3.connection import S3Connection
 from flask import Flask, request, jsonify, make_response
 from flask_sqlalchemy import SQLAlchemy
 import pymysql
@@ -7,15 +9,18 @@ import datetime
 from functools import wraps
 
 app = Flask(__name__)
-# s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
-# s3.access_key['CLEARDB_DATABASE_URL']
+
+s3 = S3Connection(os.environ.get('S3_KEY'), os.environ.get('S3_SECRET'))
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://' + os.environ.get('DB_USER') + ':' + os.environ.get('DB_PASS') + '@' + \
+                          os.environ.get('DB_HOST') + '/' + os.environ.get('DB_SCHEME')
 
 pymysql.install_as_MySQLdb()
 app.config['SECRET_KEY'] = 'thisissecret'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config[
-    'SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://bfe492d145dddb:9cc666f7@us-cdbr-east-03.cleardb.com' \
-                                 '/heroku_075cd3d1f9bda9e? '
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+# app.config[
+#     'SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://bfe492d145dddb:9cc666f7@us-cdbr-east-03.cleardb.com' \
+#                                  '/heroku_075cd3d1f9bda9e? '
 
 db = SQLAlchemy(app)
 
