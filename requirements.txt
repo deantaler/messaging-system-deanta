@@ -1,4 +1,3 @@
-boto
 PyJWT
 werkzeug
 pymysql
