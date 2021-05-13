@@ -20,7 +20,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 # app.config[
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://bfe492d145dddb:9cc666f7@us-cdbr-east-03.cleardb.com' \
-                                 '/heroku_075cd3d1f9bda9e? '
+                                        '/heroku_075cd3d1f9bda9e? '
 
 db = SQLAlchemy(app)
 
@@ -201,7 +201,6 @@ def login():
         return jsonify({'token': token})
 
     return make_response('Could not verify', 401, {'WWW-Authenticate': 'Basic realm="Login required."'})
-
 
 
 @app.route('/')
