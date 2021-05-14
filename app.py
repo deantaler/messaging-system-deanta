@@ -98,9 +98,6 @@ def get_all_users(current_user):
     return jsonify({'users': output})
 
 
-# current_user = Users.query.filter_by(name='Saul').first()
-
-
 @app.route('/message', methods=['POST'])
 @token_required
 def write_message(current_user):
