@@ -61,6 +61,11 @@ def create_user():
         name = data['name']
         password = data['password']
 
+        if len(name) > 20:
+            return jsonify({'message': 'name {} is too long, please select name up to 20 characters.'.format(name)})
+        if len(password) > 8:
+            return jsonify({'message': 'password is too long, please select password up to 8 characters.'.format(name)})
+
         if Users.query.filter_by(name=data['name']).first():
             return jsonify({'message': 'name {} already exist. please select different name.'.format(name)})
         user = Users(name=name, password=password)
